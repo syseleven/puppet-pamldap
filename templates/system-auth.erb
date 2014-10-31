@@ -20,6 +20,9 @@ password    sufficient    pam_sss.so use_authtok
 password    sufficient    pam_ldap.so use_authtok
 password    required      pam_deny.so
 
+<% if @enable_mod_mkhomedir -%>
+session     required      pam_mkhomedir.so skel=/etc/skel umask=0022
+<% end -%>
 session     optional      pam_keyinit.so revoke
 session     required      pam_limits.so
 session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid

@@ -1,6 +1,7 @@
 class pamldap::config (
   $base_dn,
   $uris,
+  $enable_mod_mkhomedir,
 ) {
   $uris_space = join($uris, ' ')
   $uris_comma = join($uris, ',')
@@ -47,6 +48,14 @@ class pamldap::config (
     content => template('pamldap/sssd.conf.erb'),
     require => Class['pamldap::install'],
     notify  => Class['pamldap::service'],
+  }
+  
+  # FIXME system-auth and password-auth are not being read by pam.d/ssh so put it in proper place
+  if $enable_mod_mkhomedir {
+    file_line {'enable_mod_mkhomedir':
+      line => 'session required pam_mkhomedir.so skel=/etc/skel umask=0022',
+      path => '/etc/pam.d/common-session',
+    }
   }
 
   case $::osfamily {
