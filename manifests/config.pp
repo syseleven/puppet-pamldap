@@ -2,6 +2,9 @@ class pamldap::config (
   $base_dn,
   $uris,
   $enable_mod_mkhomedir,
+  $tls_reqcert,
+  $binddn,
+  $bindpw,
 ) {
   $uris_space = join($uris, ' ')
   $uris_comma = join($uris, ',')

@@ -7,12 +7,16 @@ domains = LDAP
 [domain/LDAP]
 id_provider = ldap
 auth_provider = ldap
-ldap_tls_reqcert = never
-ldap_id_use_start_tls = False
+ldap_tls_reqcert = <%= @tls_reqcert %>
+ldap_id_use_start_tls = True
 chpass_provider = ldap
 cache_credentials = True
 ldap_uri = <%= @uris_comma %>
 ldap_search_base = <%= @base_dn %>
 ldap_access_filter = (&(objectclass=shadowaccount)(objectclass=posixaccount))
 ldap_schema = rfc2307
-
+<% if @binddn %>
+ldap_default_bind_dn = <%= @binddn %>
+ldap_default_authtok_type = password
+ldap_default_authtok = <%= @bindpw %>
+<% end %>
