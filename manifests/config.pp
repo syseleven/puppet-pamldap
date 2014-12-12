@@ -5,6 +5,7 @@ class pamldap::config (
   $tls_reqcert,
   $binddn,
   $bindpw,
+  $sssd_conf_vars,
 ) {
   $uris_space = join($uris, ' ')
   $uris_comma = join($uris, ',')

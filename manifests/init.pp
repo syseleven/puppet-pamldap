@@ -5,6 +5,7 @@ class pamldap (
   $tls_reqcert = 'allow',
   $binddn = false,
   $bindpw = false,
+  $sssd_conf_vars = false
 ) {
   class { 'pamldap::config':
     base_dn              => $base_dn,
@@ -13,6 +14,8 @@ class pamldap (
     tls_reqcert          => $tls_reqcert,
     binddn               => $binddn,
     bindpw               => $bindpw,
+    sssd_conf_vars       => $sssd_conf_vars,
+
   }
   include pamldap::install
   include pamldap::service
