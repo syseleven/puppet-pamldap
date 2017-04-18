@@ -1,7 +1,7 @@
 class pamldap (
-  $base_dn = hiera('pamldap::base_dn'),
-  $uris    = hiera('pamldap::uris'),
-  $enable_mod_mkhomedir = hiera('pamldap::enable_mod_mkhomedir', false),
+  $base_dn,
+  $uris,
+  $enable_mod_mkhomedir = false,
   $tls_reqcert = 'allow',
   $binddn = false,
   $bindpw = false,
