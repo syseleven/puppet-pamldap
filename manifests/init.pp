@@ -17,6 +17,7 @@ class pamldap (
     sssd_conf_vars       => $sssd_conf_vars,
 
   }
-  include pamldap::install
-  include pamldap::service
+  contain pamldap::config
+  contain pamldap::install
+  contain pamldap::service
 }
